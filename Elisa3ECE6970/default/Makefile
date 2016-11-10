@@ -37,7 +37,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = Elisa3.o 
+OBJECTS = Elisa3.o adc.o behaviors.o ir_remote_control.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -45,6 +45,48 @@ LINKONLYOBJECTS =
 ## Build
 all: $(TARGET) Elisa3ECE6970.hex Elisa3ECE6970.eep Elisa3ECE6970.lss## Compile
 Elisa3.o: ../Elisa3.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+adc.o: ../adc.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+behaviors.o: ../behaviors.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+ir_remote_control.o: ../ir_remote_control.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+leds.o: ../leds.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+mirf.o: ../mirf.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+motors.o: ../motors.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+ports_io.o: ../ports_io.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+sensors.o: ../sensors.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+speed_control.o: ../speed_control.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+spi.o: ../spi.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+twimaster.o: ../twimaster.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+usart.o: ../usart.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+utility.o: ../utility.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+variables.o: ../variables.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
