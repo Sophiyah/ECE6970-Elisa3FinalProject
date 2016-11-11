@@ -1,7 +1,7 @@
 
 #include <avr\io.h>
 #include <avr\interrupt.h>
-
+#include <util/delay.h>
 #include <stdlib.h>
 #include "variables.h"
 #include "utility.h"
@@ -10,12 +10,13 @@
 #include "behaviors.h"
 #include "sensors.h"
 
+
 int main(void) {
-//	unsigned long int startTime = 0, endTime = 0;
+	unsigned long int startTime = 0, endTime = 0;
 //	unsigned char prevSelector=0;
 
 	initPeripherals();
-
+	GREEN_LED0_ON;
 /*	calibrateSensors();
 
 	initBehaviors();
@@ -34,15 +35,38 @@ int main(void) {
 	GREEN_LED7_OFF; */
 	
 	
-	pwm_red = 125;
+	pwm_green = 255;
 //	pwm_green = 255;
 //	pwm_blue = 255;
-	updateRedLed(pwm_red);
+	updateGreenLed(pwm_green);
+	GREEN_LED1_OFF;
 //	updateGreenLed(pwm_green);
 //	updateBlueLed(pwm_blue);
 
+	GREEN_LED4_OFF;
+
+	startTime = getTime100MicroSec();
 
 	while(1) {
+
+		//delay for some time 
+		_delay_ms(500);
+
+	
+		if (pwm_green == 0) {
+			pwm_green=255;
+			GREEN_LED0_OFF;
+		}
+		else {
+			pwm_green = 0;
+			GREEN_LED0_ON;
+			GREEN_LED4_ON;
+		}
+
+		updateGreenLed(pwm_green);
+	
+
+
 /*		currentSelector = getSelector();		
 		endTime = getTime100MicroSec();
 		if((endTime-startTime) >= (PAUSE_2_SEC)) {
@@ -67,5 +91,5 @@ int main(void) {
 //		}
 //		prevSelector = currentSelector;
 	}
-
+	return(0);
 }
