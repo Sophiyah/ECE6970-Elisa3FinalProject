@@ -1,3 +1,5 @@
+//#include <stdint.h>
+
 
 #include <avr\io.h>
 #include <avr\interrupt.h>
@@ -16,6 +18,9 @@ int main(void) {
 //	unsigned char prevSelector=0;
 
 	initPeripherals();
+	calibrateSensors();
+
+	initBehaviors();
 	GREEN_LED0_ON;
 /*	calibrateSensors();
 
@@ -45,22 +50,66 @@ int main(void) {
 
 	GREEN_LED4_OFF;
 
+
+
 	startTime = getTime100MicroSec();
 
 	while(1) {
+		
+//		enableObstacleAvoidance();
+/*		setLeftSpeed(10);
+		setRightSpeed(-10);
+		handleMotorsWithSpeedController();  
 
+*/
 		//delay for some time 
-		_delay_ms(500);
+		//_delay_ms(2000);
 
+/*		//spin for 90 degrees
+		for (uint16_t turnCounter = 0; turnCounter<27500; turnCounter ++ ){
+			setLeftSpeed(10);
+			setRightSpeed(-10);
+			handleMotorsWithSpeedController();  
+		}
+*/
+
+		turnRight();
+
+/*		computeAngle();
+		signed int ElisaInitAngle= currentAngle; 		
+
+		//spin for 90 degrees
+		while (abs(currentAngle-ElisaInitAngle) <90 ){
+			setLeftSpeed(10);
+			setRightSpeed(-10);
+			handleMotorsWithSpeedController();  
+			computeAngle();
+		}
+*/
+
+
+		while(1) {
+		setLeftSpeed(0);
+		setRightSpeed(0);
+		handleMotorsWithSpeedController();  
+
+		}
+		
 	
 		if (pwm_green == 0) {
+			pwm_green=125;
+			GREEN_LED3_ON;
+			GREEN_LED2_OFF;
+		}
+		if (pwm_green == 125){
 			pwm_green=255;
-			GREEN_LED0_OFF;
+			GREEN_LED3_OFF;
+			GREEN_LED1_ON;
 		}
 		else {
 			pwm_green = 0;
-			GREEN_LED0_ON;
-			GREEN_LED4_ON;
+			GREEN_LED1_OFF;
+			GREEN_LED2_ON;
 		}
 
 		updateGreenLed(pwm_green);
