@@ -12,16 +12,18 @@
 #include "behaviors.h"
 #include "sensors.h"
 
+/*-----header files for ECE6970 Project ------*/ 
+#include "movement.h"
 
 int main(void) {
-	unsigned long int startTime = 0, endTime = 0;
-//	unsigned char prevSelector=0;
-
+//	initAdc();
 	initPeripherals();
 	calibrateSensors();
 
 	initBehaviors();
-	GREEN_LED0_ON;
+	
+//	adcSaveDataTo = SAVE_TO_PROX;
+
 /*	calibrateSensors();
 
 	initBehaviors();
@@ -30,115 +32,75 @@ int main(void) {
 
 	disableObstacleAvoidance();
 	disableCliffAvoidance();
-	GREEN_LED0_OFF;
+*/	GREEN_LED0_OFF;
 	GREEN_LED1_OFF;
 	GREEN_LED2_OFF;
 	GREEN_LED3_OFF;
 	GREEN_LED4_OFF;
 	GREEN_LED5_OFF;
 	GREEN_LED6_OFF;
-	GREEN_LED7_OFF; */
-	
-	
-	pwm_green = 255;
-//	pwm_green = 255;
-//	pwm_blue = 255;
-	updateGreenLed(pwm_green);
-	GREEN_LED1_OFF;
-//	updateGreenLed(pwm_green);
-//	updateBlueLed(pwm_blue);
+	GREEN_LED7_OFF; 
 
-	GREEN_LED4_OFF;
-
-
-
-	startTime = getTime100MicroSec();
-
+	//enableObstacleAvoidance();
+	int changeLed = 0;
 	while(1) {
 		
-//		enableObstacleAvoidance();
-/*		setLeftSpeed(10);
-		setRightSpeed(-10);
-		handleMotorsWithSpeedController();  
-
-*/
+	//adcSaveDataTo = SAVE_TO_PROX;
 		//delay for some time 
-		//_delay_ms(2000);
-
-/*		//spin for 90 degrees
-		for (uint16_t turnCounter = 0; turnCounter<27500; turnCounter ++ ){
-			setLeftSpeed(10);
-			setRightSpeed(-10);
-			handleMotorsWithSpeedController();  
-		}
-*/
-
-		turnRight();
-
-/*		computeAngle();
-		signed int ElisaInitAngle= currentAngle; 		
-
-		//spin for 90 degrees
-		while (abs(currentAngle-ElisaInitAngle) <90 ){
-			setLeftSpeed(10);
-			setRightSpeed(-10);
-			handleMotorsWithSpeedController();  
-			computeAngle();
-		}
-*/
-
-
-		while(1) {
-		setLeftSpeed(0);
-		setRightSpeed(0);
-		handleMotorsWithSpeedController();  
-
-		}
+		_delay_ms(2000);
+		if (changeLed==0){
+			GREEN_LED7_ON;
+			changeLed=1;
+			moveForward(1);
+			
+			//for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
+			while(1){
+			stopWait(1);
+			
+			}
 		
-	
-		if (pwm_green == 0) {
-			pwm_green=125;
-			GREEN_LED3_ON;
-			GREEN_LED2_OFF;
-		}
-		if (pwm_green == 125){
-			pwm_green=255;
-			GREEN_LED3_OFF;
-			GREEN_LED1_ON;
 		}
 		else {
-			pwm_green = 0;
+			GREEN_LED7_OFF;
+			changeLed=0;
+
+		}
+	
+
+		if (proximityResult[9] < 10 ) {
+			GREEN_LED7_OFF;
+			GREEN_LED0_ON;
+		}
+		else if (proximityResult[9] < 100) {
+			GREEN_LED0_OFF;
+			GREEN_LED1_ON;
+		}
+		else if (proximityResult[9] < 150) {
 			GREEN_LED1_OFF;
 			GREEN_LED2_ON;
 		}
-
-		updateGreenLed(pwm_green);
-	
-
-
-/*		currentSelector = getSelector();		
-		endTime = getTime100MicroSec();
-		if((endTime-startTime) >= (PAUSE_2_SEC)) {
-			readBatteryLevel();				// the battery level is updated every two seconds
-             		
-			if(currentSelector==10 || currentSelector==5) {
-				pwm_red = rand() % 255;
-				pwm_green = rand() % 255;
-				pwm_blue = rand() % 255;
-			}
-
-			startTime = getTime100MicroSec();
+		else if (proximityResult[9] < 200) {
+			GREEN_LED2_OFF;
+			GREEN_LED3_ON;
 		}
-
-		switch(currentSelector) {
-			case 10: //random colors on RGB leds:
-/				updateRedLed(pwm_red);
-//				updateGreenLed(pwm_green);
-//				updateBlueLed(pwm_blue);
-//			break;
-*/
-//		}
-//		prevSelector = currentSelector;
+		else if (proximityResult[9] < 250) {
+			GREEN_LED3_OFF;
+			GREEN_LED4_ON;
+		}
+		else if (proximityResult[9] < 300) {
+			GREEN_LED4_OFF;
+			GREEN_LED5_ON;
+		}
+		else if (proximityResult[9] < 400) {
+			GREEN_LED5_OFF;
+			GREEN_LED6_ON;
+		}
+		else if (proximityResult[9] <500) {
+			GREEN_LED6_OFF;
+			GREEN_LED7_ON;
+		}
+	
+	
 	}
 	return(0);
 }
