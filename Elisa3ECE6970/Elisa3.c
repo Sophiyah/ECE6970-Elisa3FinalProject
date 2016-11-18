@@ -23,7 +23,8 @@ int main(void) {
 	GREEN_LED4_ON;
 
 	while (1) {
-      getMap();
+      //getMap();
+	  getData();
 	}
 
 	return(0);

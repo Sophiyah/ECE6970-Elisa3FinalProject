@@ -23,7 +23,10 @@ extern unsigned char proxUpdated;
 extern int proximityResultLinear[8];
 extern signed long int rightMotSteps;
 extern signed long int leftMotSteps;
-
+extern unsigned char demoState;
+extern unsigned char irCommLedToggle;
+extern unsigned char irCommRobotsNum;
+extern unsigned char irCommRobotId;
 /******************************/
 /*** CONSUMPTION CONTROLLER ***/
 /******************************/

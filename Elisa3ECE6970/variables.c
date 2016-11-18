@@ -11,7 +11,10 @@ unsigned char rightMotorPhase = 0;					// current right motor pwm phase (active 
 unsigned char leftMotorPhase = 0;					// current left motor pwm phase (active or passive)
 volatile unsigned int proximityValue[24] = {0};		// array containing the proximity values: 
 													// index	sensor	value
-													// 0		prox0	passive (no pulse) value
+unsigned char demoState = 0;
+unsigned char irCommLedToggle = 0;
+unsigned char irCommRobotsNum =0;
+unsigned char irCommRobotId	=0;											// 0		prox0	passive (no pulse) value
 													// 1		prox0	active (pulse) value
 													// 2		prox1	passive value
 													// 3		prox1	active value
