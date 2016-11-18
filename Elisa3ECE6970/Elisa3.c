@@ -12,17 +12,18 @@
 #include "behaviors.h"
 #include "sensors.h"
 
+/*-----header files for ECE6970 Project ------*/ 
 #include "movement.h"
 
 int main(void) {
-	unsigned long int startTime = 0, endTime = 0;
-//	unsigned char prevSelector=0;
-
+//	initAdc();
 	initPeripherals();
 	calibrateSensors();
 
 	initBehaviors();
-	GREEN_LED0_ON;
+	
+//	adcSaveDataTo = SAVE_TO_PROX;
+
 /*	calibrateSensors();
 
 	initBehaviors();
@@ -39,22 +40,42 @@ int main(void) {
 	GREEN_LED5_OFF;
 	GREEN_LED6_OFF;
 	GREEN_LED7_OFF; 
-	
-	
 
-
+	//enableObstacleAvoidance();
+	int changeLed = 0;
 	while(1) {
 		
-
+	//adcSaveDataTo = SAVE_TO_PROX;
 		//delay for some time 
-		//_delay_ms(2000);
+		_delay_ms(2000);
+		if (changeLed==0){
+			GREEN_LED7_ON;
+			changeLed=1;
+			moveForward(1);
+			
+			//for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
+			while(1){
+			stopWait(1);
+			
+			}
+		
+		}
+		else {
+			GREEN_LED7_OFF;
+			changeLed=0;
 
+		}
+	
 
-
-		if (proximityResult[9] < 50 ) {
-			GREEN_LED1_ON;
+		if (proximityResult[9] < 10 ) {
+			GREEN_LED7_OFF;
+			GREEN_LED0_ON;
 		}
 		else if (proximityResult[9] < 100) {
+			GREEN_LED0_OFF;
+			GREEN_LED1_ON;
+		}
+		else if (proximityResult[9] < 150) {
 			GREEN_LED1_OFF;
 			GREEN_LED2_ON;
 		}
