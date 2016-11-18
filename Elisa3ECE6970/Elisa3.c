@@ -14,6 +14,7 @@
 
 /*-----header files for ECE6970 Project ------*/ 
 #include "movement.h"
+#include "mapping.h"
 
 int main(void) {
 //	initAdc();
@@ -21,7 +22,8 @@ int main(void) {
 	calibrateSensors();
 
 	initBehaviors();
-	
+	initUsart0();	
+
 //	adcSaveDataTo = SAVE_TO_PROX;
 
 /*	calibrateSensors();
@@ -42,16 +44,34 @@ int main(void) {
 	GREEN_LED7_OFF; 
 
 	//enableObstacleAvoidance();
-	int changeLed = 0;
+	//int changeLed = 0;
 	while(1) {
 		
 	//adcSaveDataTo = SAVE_TO_PROX;
 		//delay for some time 
-		_delay_ms(2000);
-		if (changeLed==0){
+		//_delay_ms(2000);
+		//if (changeLed==0){
+/*		int tempCounter = 0;
+		ISR(proxUpdated){
+			
+			if(changeLed = 1){
 			GREEN_LED7_ON;
-			changeLed=1;
-			moveForward(1);
+			changeLed =0;
+			}
+			else {
+			GREEN_LED7_OFF;
+			changeLed = 1;
+			}
+//			proximityResult[9] 
+			tempCounter++; 
+			proxUpdated = 0;
+
+			if(tempCounter == 160){
+			tempCounter = 0;
+			}
+			//changeLed=1;
+			//moveForward(1);
+			//mapRoom();
 			
 			//for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
 			while(1){
@@ -60,47 +80,40 @@ int main(void) {
 			}
 		
 		}
-		else {
+		*/
+	/*	else {
 			GREEN_LED7_OFF;
 			changeLed=0;
 
 		}
 	
+	*/
 
-		if (proximityResult[9] < 10 ) {
-			GREEN_LED7_OFF;
-			GREEN_LED0_ON;
+
+		//for(int i=0; i<12; i++) {
+		int tempProxResult = proximityResult[9] + 0x30;
+									usart0Transmit(tempProxResult&0xFF,1);
+									usart0Transmit(tempProxResult>>8,1);
+									//usart0Transmit(proximityValue[i*2]&0xFF,1);
+									//usart0Transmit(proximityValue[i*2]>>8,1);
+		//						}
+		int temp = proxUpdated + 0x30;	;
+		 usart0Transmit(1,1);
+
+		if(proximityResult[6] < 312){
+			GREEN_LED6_ON; 
 		}
-		else if (proximityResult[9] < 100) {
-			GREEN_LED0_OFF;
-			GREEN_LED1_ON;
+		else {
+			GREEN_LED6_OFF;
 		}
-		else if (proximityResult[9] < 150) {
-			GREEN_LED1_OFF;
-			GREEN_LED2_ON;
+
+		if (proximityResult[9] < 600 ) {
+			GREEN_LED4_OFF;
 		}
-		else if (proximityResult[9] < 200) {
-			GREEN_LED2_OFF;
-			GREEN_LED3_ON;
-		}
-		else if (proximityResult[9] < 250) {
-			GREEN_LED3_OFF;
+		else {
 			GREEN_LED4_ON;
 		}
-		else if (proximityResult[9] < 300) {
-			GREEN_LED4_OFF;
-			GREEN_LED5_ON;
-		}
-		else if (proximityResult[9] < 400) {
-			GREEN_LED5_OFF;
-			GREEN_LED6_ON;
-		}
-		else if (proximityResult[9] <500) {
-			GREEN_LED6_OFF;
-			GREEN_LED7_ON;
-		}
-	
 	
 	}
-	return(0);
+	//return(0);
 }

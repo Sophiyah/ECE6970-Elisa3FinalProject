@@ -84,7 +84,7 @@ Returns 1 if and edge is detected and returns 0 if no edge detected.
 char gridEdgeDetected() {
 
 	// tell whether a gridEdge is detected or not
-	if(proximityResult[9] > CLIFF_THR || proximityResult[10] > CLIFF_THR) {
+	if(proximityResult[9] > 600  || proximityResult[10] > 600) {
 		return 1; //it sees the white line
 	} else {
 		return 0;
