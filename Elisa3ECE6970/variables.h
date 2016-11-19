@@ -27,6 +27,7 @@ extern unsigned char demoState;
 extern unsigned char irCommLedToggle;
 extern unsigned char irCommRobotsNum;
 extern unsigned char irCommRobotId;
+extern unsigned char irCommRxDataAvailable;
 /******************************/
 /*** CONSUMPTION CONTROLLER ***/
 /******************************/
@@ -149,4 +150,132 @@ extern unsigned char obstacleAvoidanceEnabled;
 /***********************/
 extern unsigned char cliffAvoidanceEnabled;
 extern unsigned char cliffDetectedFlag;
+
+/***************/
+/*** IR COMM ***/
+/***************/
+extern unsigned char irCommEnabled;
+extern unsigned char irCommEnabledNext;
+extern unsigned char irCommMode;
+extern volatile unsigned char irCommState;
+extern unsigned int irCommTempValue;
+extern volatile unsigned char irCommSendValues;
+extern unsigned long int irCommTickCounter;
+extern unsigned long int irCommTickCounter2;
+extern unsigned char irCommTickCounterUpdate;
+extern signed char irCommLastSensor;
+extern signed int irCommLastData;
+
+// demo
+extern signed int angleDeg;
+extern signed int angleError;
+extern unsigned char angleDegEncode;
+extern unsigned char irCommRobotId;
+extern unsigned char irCommRobotsNum;
+extern unsigned char irCommLedToggle;
+extern unsigned char irCommMsgCount;
+
+// debug
+extern signed int irCommMaxSensorSignalTemp[IRCOMM_SAMPLING_WINDOW*2];
+extern unsigned char irCommMaxSensorSignalIndexTemp;
+extern signed int irCommMaxSensorSignalFiltTemp[IRCOMM_SAMPLING_WINDOW*2];
+extern unsigned char irCommMaxSensorSignalFiltIndexTemp;
+extern signed int irCommRxMaxSensorTemp[2];
+extern unsigned char irCommRxMaxSensorIndexTemp;
+extern signed int irCommRxMaxDiffTemp[2];
+extern unsigned char irCommRxMaxDiffIndexTemp;
+extern signed int irCommProxMeanTemp[2];
+extern unsigned char irCommProxMeanIndexTemp;
+extern unsigned char irCommSwitchCountTemp[2];
+extern unsigned char irCommSwitchCountIndexTemp;
+extern unsigned int irCommMaxSensorValueCurrTemp[2];
+extern unsigned char irCommMaxSensorValueCurrIndexTemp;
+extern unsigned int irCommMinSensorValueCurrTemp[2];
+extern unsigned char irCommMinSensorValueCurrIndexTemp;
+extern unsigned char irCommShiftCountTemp[2];
+extern unsigned char irCommShiftCountIndexTemp;
+extern unsigned char irCommShiftCountFinalTemp[2];
+extern unsigned char irCommShiftCountFinalIndexTemp;
+extern unsigned int irCommStartDiffTemp[2];
+extern unsigned char irCommStartDiffIndexTemp;
+extern unsigned char irCommComputeShiftTemp[2];
+extern unsigned char irCommComputeShiftIndexTemp;
+extern unsigned char irCommRxPeakHighToLowTemp[2];
+extern unsigned char irCommRxPeakHighToLowIndexTemp;
+extern unsigned char irCommRxStartPeakDurationTemp[2];
+extern unsigned char irCommRxStartPeakDurationIndexTemp;
+extern unsigned char irCommRxStartBitDetectedTemp[2];
+extern unsigned char irCommRxStartBitDetectedIndexTemp;
+extern unsigned char irCommStateTemp[14];
+extern unsigned char irCommStateIndexTemp;
+extern unsigned char irCommSyncStateTemp[2];
+extern unsigned char irCommSyncStateIndexTemp;
+extern signed int irCommBitsSignalTemp[IRCOMM_SAMPLING_WINDOW*10];
+extern unsigned char irCommBitsSignalIndexTemp;
+extern unsigned char irCommRxBitReceivedTemp[10];
+extern unsigned char irCommRxBitReceivedIndexTemp;
+extern unsigned char irCommRxPrevDataReceived;
+
+// reception
+extern unsigned char irCommAdcRxState;
+extern unsigned char irCommRxWindowSamples;
+extern unsigned int irCommMaxSensorValueBuff1[8];
+extern unsigned int irCommMaxSensorValueBuff2[8];
+extern unsigned int *irCommMaxSensorValueAdc;
+extern unsigned int *irCommMaxSensorValueCurr;
+extern unsigned int irCommMinSensorValueBuff1[8];
+extern unsigned int irCommMinSensorValueBuff2[8];
+extern unsigned int *irCommMinSensorValueAdc;
+extern unsigned int *irCommMinSensorValueCurr;
+extern unsigned int irCommProxValuesBuff1[8*IRCOMM_SAMPLING_WINDOW];
+extern unsigned int irCommProxValuesBuff2[8*IRCOMM_SAMPLING_WINDOW];
+extern unsigned int *irCommProxValuesAdc;
+extern unsigned int *irCommProxValuesCurr;
+extern unsigned int *irCommTempPointer;
+extern unsigned char irCommRxCrc;
+extern signed int irCommMaxSensorSignal[IRCOMM_SAMPLING_WINDOW];
+extern signed long int irCommProxSum;
+extern signed int irCommTempMax;
+extern signed int irCommTempMin;
+extern unsigned char irCommShiftCount;
+extern unsigned char irCommComputeShift;
+extern signed int irCommProxMean;
+extern signed char irCommSignalState;
+extern unsigned char irCommSwitchCount;
+extern unsigned char irCommRxBitCount;
+extern unsigned char irCommRxCrcError;
+extern unsigned char irCommRxByte;
+extern unsigned char irCommSecondBitSkipped;
+extern unsigned char irCommShiftCounter;
+extern unsigned char irCommRxBitReceived[10];
+extern unsigned char irCommRxByteExpected;
+extern unsigned char irCommRxSequenceCount;
+extern unsigned char irCommRxLastDataReceived;
+extern unsigned char irCommRxDataAvailable;
+extern signed char irCommRxReceivingSensor;
+extern unsigned char irCommRxBitSkipped;
+extern unsigned char irCommRxStartBitDetected;
+extern unsigned char irCommRxPeakHighToLow;
+extern unsigned char irCommRxStartPeakDuration;
+extern signed int irCommRxMaxDiff;
+extern signed int irCommRxMaxSensor;
+extern unsigned char irCommRxNumReceivingSensors;
+
+// transmission
+extern unsigned char irCommAdcTxState;
+extern unsigned char irCommTxByte;
+extern unsigned char irCommTxByteEnqueued;
+extern unsigned long int irCommTxLastTransmissionTime;
+extern unsigned char irCommTxBitToTransmit[12];
+extern unsigned char irCommTxCrc;
+extern unsigned char irCommTxBitCount;
+extern unsigned char irCommTxPulseState;
+extern unsigned int irCommTxDuration;
+extern unsigned char irCommTxSwitchCount;
+extern unsigned char irCommTxSwitchCounter;
+extern unsigned char irCommTxDurationCycle;
+extern unsigned char irCommTxSensorMask;
+extern unsigned char irCommTxSensorGroup;
+
+
 

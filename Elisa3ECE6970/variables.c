@@ -9,12 +9,9 @@ unsigned char currentMotLeftChannel = 0;			// current channel to sample for the 
 unsigned char currentMotRightChannel = 0;			// current channel to sample for the right motor based on forward/backward and active/passive phase
 unsigned char rightMotorPhase = 0;					// current right motor pwm phase (active or passive)
 unsigned char leftMotorPhase = 0;					// current left motor pwm phase (active or passive)
-volatile unsigned int proximityValue[24] = {0};		// array containing the proximity values: 
-													// index	sensor	value
+volatile unsigned int proximityValue[24] = {0};		// array containing the proximity values: 													// index	sensor	value
 unsigned char demoState = 0;
-unsigned char irCommLedToggle = 0;
-unsigned char irCommRobotsNum =0;
-unsigned char irCommRobotId	=0;											// 0		prox0	passive (no pulse) value
+										// 0		prox0	passive (no pulse) value
 													// 1		prox0	active (pulse) value
 													// 2		prox1	passive value
 													// 3		prox1	active value
@@ -163,5 +160,132 @@ unsigned char obstacleAvoidanceEnabled = 0;			// flag indicating that obstacle a
 /***********************/
 unsigned char cliffAvoidanceEnabled = 0;			// flag indicating that cliff avoidance is enabled
 unsigned char cliffDetectedFlag = 0;				// flag indicating a cliff is detected => stop the motors
+
+/***************/
+/*** IR COMM ***/
+/***************/
+unsigned char irCommEnabled = IRCOMM_MODE_SENSORS_SAMPLING;
+unsigned char irCommEnabledNext = IRCOMM_MODE_SENSORS_SAMPLING;
+unsigned char irCommMode = IRCOMM_MODE_SENSORS_SAMPLING;
+volatile unsigned char irCommState = 0;
+unsigned int irCommTempValue = 0;
+volatile unsigned char irCommSendValues = 0;	// debug through uart
+unsigned long int irCommTickCounter = 0;
+unsigned long int irCommTickCounter2 = 0;
+unsigned char irCommTickCounterUpdate = 0;
+signed char irCommLastSensor = -1;
+signed int irCommLastData = 0;
+
+// demo
+signed int angleDeg = 0;
+signed int angleError = 0;
+unsigned char angleDegEncode = 0;
+unsigned char irCommRobotId = 0;
+unsigned char irCommRobotsNum = 0;
+unsigned char irCommLedToggle = 0;
+unsigned char irCommMsgCount = 0;
+
+// debug
+signed int irCommMaxSensorSignalTemp[IRCOMM_SAMPLING_WINDOW*2];
+unsigned char irCommMaxSensorSignalIndexTemp = 0;
+signed int irCommMaxSensorSignalFiltTemp[IRCOMM_SAMPLING_WINDOW*2];
+unsigned char irCommMaxSensorSignalFiltIndexTemp = 0;
+signed int irCommRxMaxSensorTemp[2];
+unsigned char irCommRxMaxSensorIndexTemp=0;
+signed int irCommRxMaxDiffTemp[2];
+unsigned char irCommRxMaxDiffIndexTemp=0;
+signed int irCommProxMeanTemp[2];
+unsigned char irCommProxMeanIndexTemp=0;
+unsigned char irCommSwitchCountTemp[2];
+unsigned char irCommSwitchCountIndexTemp=0;
+unsigned int irCommMaxSensorValueCurrTemp[2];
+unsigned char irCommMaxSensorValueCurrIndexTemp=0;
+unsigned int irCommMinSensorValueCurrTemp[2];
+unsigned char irCommMinSensorValueCurrIndexTemp=0;
+unsigned char irCommShiftCountTemp[2];
+unsigned char irCommShiftCountIndexTemp=0;
+unsigned char irCommShiftCountFinalTemp[2];
+unsigned char irCommShiftCountFinalIndexTemp=0;
+unsigned int irCommStartDiffTemp[2];
+unsigned char irCommStartDiffIndexTemp=0;
+unsigned char irCommComputeShiftTemp[2];
+unsigned char irCommComputeShiftIndexTemp=0;
+unsigned char irCommRxPeakHighToLowTemp[2];
+unsigned char irCommRxPeakHighToLowIndexTemp=0;
+unsigned char irCommRxStartPeakDurationTemp[2];
+unsigned char irCommRxStartPeakDurationIndexTemp=0;
+unsigned char irCommRxStartBitDetectedTemp[2];
+unsigned char irCommRxStartBitDetectedIndexTemp=0;
+unsigned char irCommStateTemp[14];
+unsigned char irCommStateIndexTemp=0;
+unsigned char irCommSyncStateTemp[2];
+unsigned char irCommSyncStateIndexTemp=0;
+signed int irCommBitsSignalTemp[IRCOMM_SAMPLING_WINDOW*10];
+unsigned char irCommBitsSignalIndexTemp=0;
+unsigned char irCommRxBitReceivedTemp[10];
+unsigned char irCommRxBitReceivedIndexTemp=0;
+unsigned char irCommRxPrevDataReceived=0;
+
+// reception
+unsigned char irCommAdcRxState = 0;
+unsigned char irCommRxWindowSamples = 0;
+unsigned int irCommMaxSensorValueBuff1[8];
+unsigned int irCommMaxSensorValueBuff2[8];
+unsigned int *irCommMaxSensorValueAdc;
+unsigned int *irCommMaxSensorValueCurr;
+unsigned int irCommMinSensorValueBuff1[8];
+unsigned int irCommMinSensorValueBuff2[8];
+unsigned int *irCommMinSensorValueAdc;
+unsigned int *irCommMinSensorValueCurr;
+unsigned int irCommProxValuesBuff1[8*IRCOMM_SAMPLING_WINDOW];
+unsigned int irCommProxValuesBuff2[8*IRCOMM_SAMPLING_WINDOW];
+unsigned int *irCommProxValuesAdc;
+unsigned int *irCommProxValuesCurr;
+unsigned int *irCommTempPointer;
+unsigned char irCommRxCrc = 0;
+signed int irCommMaxSensorSignal[IRCOMM_SAMPLING_WINDOW];
+signed long int irCommProxSum = 0;
+signed int irCommTempMax = 0;
+signed int irCommTempMin = 0;
+unsigned char irCommShiftCount = 0;
+unsigned char irCommComputeShift = 0;
+signed int irCommProxMean = 0;
+signed char irCommSignalState = 0;
+unsigned char irCommSwitchCount = 0;
+unsigned char irCommRxBitCount = 0;
+unsigned char irCommRxCrcError = 0;
+unsigned char irCommRxByte = 0;
+unsigned char irCommSecondBitSkipped = 0;
+unsigned char irCommShiftCounter = 0;
+unsigned char irCommRxBitReceived[10];	// used for debug essentially
+unsigned char irCommRxByteExpected = 0;	// debug
+unsigned char irCommRxSequenceCount = 0;	// debug
+unsigned char irCommRxLastDataReceived = 0;
+unsigned char irCommRxDataAvailable = 0;
+signed char irCommRxReceivingSensor = -1;
+unsigned char irCommRxBitSkipped = 0;
+unsigned char irCommRxStartBitDetected = 0;
+unsigned char irCommRxPeakHighToLow = 0;
+unsigned char irCommRxStartPeakDuration = 0;
+signed int irCommRxMaxDiff = 0;
+signed int irCommRxMaxSensor = 0;
+unsigned char irCommRxNumReceivingSensors = 0;
+
+// transmission
+unsigned char irCommAdcTxState = 0;
+unsigned char irCommTxByte = 0;
+unsigned char irCommTxByteEnqueued = 0;
+unsigned long int irCommTxLastTransmissionTime = 0;	// used for min pause between bytes transmission
+unsigned char irCommTxBitToTransmit[12];
+unsigned char irCommTxCrc = 0;
+unsigned char irCommTxBitCount = 0;
+unsigned char irCommTxPulseState = 0;
+unsigned int irCommTxDuration = 0;
+unsigned char irCommTxSwitchCount = 0;
+unsigned char irCommTxSwitchCounter = 0;
+unsigned char irCommTxDurationCycle = 0;
+unsigned char irCommTxSensorMask = 0;
+unsigned char irCommTxSensorGroup = 0;
+
 
 

@@ -3,6 +3,7 @@
 /***************/
 /*** VARIOUS ***/
 /***************/
+#define MAX_U32 4294967295
 #ifndef RAD_2_DEG
 #define RAD_2_DEG 57.2957796				// conversion factor from radiant to degrees; 
 #endif										// use: degrees_value = radiant_value * RAD_2_DEG
@@ -17,6 +18,24 @@
 #define PAUSE_100_MSEC 961
 #define PAUSE_1_SEC 9615
 #define PAUSE_2_SEC 19230
+#define PAUSE_200_MSEC 1923
+#define PAUSE_250_MSEC 2404
+#define PAUSE_300_MSEC 2885
+#define PAUSE_400_MSEC 3846
+#define PAUSE_500_MSEC 4807
+#define PAUSE_750_MSEC 7211
+#define PAUSE_1_SEC 9615
+#define PAUSE_1500_MSEC 14423
+#define PAUSE_2_SEC 19230
+#define PAUSE_4_SEC 38462
+#define PAUSE_5_SEC 48077
+#define PAUSE_6_SEC 57692
+#define PAUSE_10_SEC 96154
+#define PAUSE_15_SEC 144230
+#define PAUSE_20_SEC 192307
+#define PAUSE_30_SEC 288461
+#define PAUSE_40_SEC 384615
+#define PAUSE_60_SEC 576923
 #endif
 
 #ifndef UART_BUFF_SIZE
@@ -30,6 +49,10 @@
 #define PAYLOAD_SIZE 13						// payload of the packet received from the computer
 #endif
 
+
+#ifndef SAVE_TO_PROX_IRCOMM
+#define SAVE_TO_PROX_IRCOMM 6
+#endif
 /************************/
 /*** SPEED CONTROLLER ***/
 /************************/
@@ -338,6 +361,62 @@
 #ifndef NOISE_THR							// define the value under which the proximity is considered to be noise
 #define NOISE_THR 5
 #endif
+
+/***************/
+/*** IR COMM ***/
+/***************/
+#define IRCOMM_MODE_SENSORS_SAMPLING 0
+#define IRCOMM_MODE_RECEIVE 1
+#define IRCOMM_MODE_TRANSMIT 2
+//#define IRCOMM_MODE_RECEIVE_ONLY 3
+//#define IRCOMM_MODE_TRANSMIT_ONLY 4
+#define IRCOMM_SAMPLING_WINDOW 20
+
+
+// reception
+#define IRCOMM_RX_IDLE_STATE 1
+#define IRCOMM_RX_MAX_SENSOR_STATE 2 
+#define IRCOMM_RX_DETECT_START_BIT_STATE 3
+#define IRCOMM_RX_SYNC_SIGNAL 4
+#define IRCOMM_RX_WAITING_BIT 5
+#define IRCOMM_RX_READ_BIT 6
+#define IRCOMM_RX_CHECK_CRC 7
+#define IRCOMM_RX_DEBUG 8
+#define IRCOMM_RX_STOP 9
+
+#define IRCOMM_DETECTION_AMPLITUDE_THR 80 //20
+#define IRCOMM_START_BIT_MIN_SWITCH_COUNT 2
+
+// transmission
+#define IRCOMM_TX_IDLE_STATE 1				// wait the user data to be sent
+#define IRCOMM_TX_COMPUTE_TIMINGS 2 
+#define IRCOMM_TX_TRANSMIT_BIT 3
+#define IRCOMM_TX_PREPARE_TRANSMISSION 5
+
+#define IRCOMM_TX_ADC_IDLE 0
+#define IRCOMM_TX_ADC_TURN_OFF_SENSORS 1
+#define IRCOMM_TX_ADC_WAIT_PREPARATION 2
+#define IRCOMM_TX_ADC_TRANSMISSION_SEQ1 3	// we need two state for byte transmission to change the channel sampled
+#define IRCOMM_TX_ADC_TRANSMISSION_SEQ2 4	// related to motors
+
+#define IRCOMM_BIT_START1_SWITCH_COUNT 2
+#define IRCOMM_BIT_START2_SWITCH_COUNT 1
+#define IRCOMM_BIT0_SWITCH_COUNT 8
+#define IRCOMM_BIT1_SWITCH_COUNT 4
+#define IRCOMM_BIT_START1_DURATION 120
+#define IRCOMM_BIT_START2_DURATION 240
+#define IRCOMM_BIT0_DURATION 30	// based on adc isr of 104 us
+#define IRCOMM_BIT1_DURATOIN 60 // based on adc isr of 104 us
+
+// debug
+#define DEBUG_MAX_SENSOR_STATE 0
+#define DEBUG_ALL_SENSORS 0
+#define DEBUG_MAX_SENSOR 0
+#define DEBUG_START_BIT_STATE 0
+#define DEBUG_READ_BIT 0
+#define DEBUG_BYTE_RECEPTION 0
+#define DEBUG_BYTE_SEQUENCE 0
+
 
 
 

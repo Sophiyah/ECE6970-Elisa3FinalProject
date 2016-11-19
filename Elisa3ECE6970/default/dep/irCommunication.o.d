@@ -1,4 +1,5 @@
-movement.o: ../movement.c ../motors.h ../variables.h ../constants.h \
+irCommunication.o: ../irCommunication.c ../irCommunication.h \
+  ../variables.h ../constants.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr\io.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/sfr_defs.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/inttypes.h \
@@ -9,15 +10,21 @@ movement.o: ../movement.c ../motors.h ../variables.h ../constants.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/common.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/version.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/fuse.h \
-  c:/winavr-20100110/lib/gcc/../../avr/include/avr/lock.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr/lock.h ../utility.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr\interrupt.h \
-  c:/winavr-20100110/lib/gcc/../../avr/include/avr/io.h ../behaviors.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr/io.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr\sleep.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr\eeprom.h \
+  c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h \
+  ../ports_io.h ../adc.h ../motors.h ../behaviors.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/math.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h \
-  c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h \
-  ../speed_control.h ../movement.h
+  ../speed_control.h ../leds.h ../spi.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/stdio.h \
+  c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h ../mirf.h \
+  ../sensors.h ../twimaster.h ../usart.h ../ir_remote_control.h
 
-../motors.h:
+../irCommunication.h:
 
 ../variables.h:
 
@@ -45,9 +52,23 @@ c:/winavr-20100110/lib/gcc/../../avr/include/avr/fuse.h:
 
 c:/winavr-20100110/lib/gcc/../../avr/include/avr/lock.h:
 
+../utility.h:
+
 c:/winavr-20100110/lib/gcc/../../avr/include/avr\interrupt.h:
 
 c:/winavr-20100110/lib/gcc/../../avr/include/avr/io.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/avr\sleep.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/avr\eeprom.h:
+
+c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h:
+
+../ports_io.h:
+
+../adc.h:
+
+../motors.h:
 
 ../behaviors.h:
 
@@ -55,8 +76,22 @@ c:/winavr-20100110/lib/gcc/../../avr/include/math.h:
 
 c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h:
 
-c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h:
-
 ../speed_control.h:
 
-../movement.h:
+../leds.h:
+
+../spi.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/stdio.h:
+
+c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h:
+
+../mirf.h:
+
+../sensors.h:
+
+../twimaster.h:
+
+../usart.h:
+
+../ir_remote_control.h:

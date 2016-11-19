@@ -12,7 +12,17 @@ communication.o: ../communication.c ../communication.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/lock.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr\interrupt.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/avr/io.h ../variables.h \
-  ../constants.h ../leds.h
+  ../constants.h ../leds.h ../irCommunication.h ../utility.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr\sleep.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/avr\eeprom.h \
+  c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h \
+  ../ports_io.h ../adc.h ../motors.h ../behaviors.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/math.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h \
+  ../speed_control.h ../spi.h \
+  c:/winavr-20100110/lib/gcc/../../avr/include/stdio.h \
+  c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h ../mirf.h \
+  ../sensors.h ../twimaster.h ../usart.h ../ir_remote_control.h
 
 ../communication.h:
 
@@ -47,3 +57,43 @@ c:/winavr-20100110/lib/gcc/../../avr/include/avr/io.h:
 ../constants.h:
 
 ../leds.h:
+
+../irCommunication.h:
+
+../utility.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/avr\sleep.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/avr\eeprom.h:
+
+c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h:
+
+../ports_io.h:
+
+../adc.h:
+
+../motors.h:
+
+../behaviors.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/math.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h:
+
+../speed_control.h:
+
+../spi.h:
+
+c:/winavr-20100110/lib/gcc/../../avr/include/stdio.h:
+
+c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h:
+
+../mirf.h:
+
+../sensors.h:
+
+../twimaster.h:
+
+../usart.h:
+
+../ir_remote_control.h:

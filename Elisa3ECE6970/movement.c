@@ -1,26 +1,60 @@
 
+#include "motors.h"
 #include "movement.h"
 
+/*----variables for file-----*/
+static uint16_t turn90count = 27500; //nonmagnetic surface counter
+static uint16_t gridMoveCount = 33000; 
 
 
+/*turns 90 degrees to the left
+*/
+void turnLeft() {
+		
+		//spin for 90 degrees
+		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
+			setLeftSpeed(-10);
+			setRightSpeed(10);
+			handleMotorsWithSpeedController();  
+		}
 
+}
+
+/*turns 90 degrees to the right
+*/
 void turnRight() {
+
 		//spin for 90 degrees
 		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
 			setLeftSpeed(10);
 			setRightSpeed(-10);
 			handleMotorsWithSpeedController();  
 		}
+
+}
+
+/*
+turn 180 degrees and face the direction it came from
+*/
+void turn180() {
+		//stopWait(0); //run
 		
-		stopWait(1);
+		//spin for 90 degrees
+		for (uint16_t turnCounter = 0; turnCounter < (turn90count*2); turnCounter ++ ){
+			setLeftSpeed(10);
+			setRightSpeed(-10);
+			handleMotorsWithSpeedController();  
+		}
+		
 
 }
 
 
-/*stop where robot is and set motor speed to 0, wait while stop = 1
+
+/*stop where robot is and set motor speed to 0, wait if stop = 1
 */
 void stopWait(char stop) {
-	while(stop) {
+	if(stop) {
 			setLeftSpeed(0);
 			setRightSpeed(0);
 			handleMotorsWithSpeedController();
@@ -29,8 +63,18 @@ void stopWait(char stop) {
 }
 
 
+/*move forwared x amount grid step
+*/
+void moveForward(int gridSteps) {
+	for (int gridStepCounter = 0; gridStepCounter < gridSteps; gridStepCounter ++) {
+		moveForwardOne();
+	}
+}
 
-/*----------helper functions *-----------/
+
+
+
+/*----------helper functions ------------------*/
 
 
 /* tell if the front ground sensors detect a gridEdge. 
@@ -50,15 +94,16 @@ char gridEdgeDetected() {
 
 /*move forwared 1 grid step
 */
-void moveForward(){
+void moveForwardOne(){
 
-	while(gridEdgeDetected()) {
-			setLeftSpeed(10);
-			setRightSpeed(10);
+//	while(gridEdgeDetected()) {
+	for (uint16_t gridMoveCounter = 0; gridMoveCounter < gridMoveCount; gridMoveCounter ++ ){
+			setLeftSpeed(15);
+			setRightSpeed(15);
 			handleMotorsWithSpeedController();
 	}
 
-	stopWait(1);
+//	stopWait(1);
 	
 }
 

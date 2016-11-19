@@ -10,12 +10,19 @@
 #include "nRF24L01.h"
 #include "behaviors.h"
 #include "sensors.h"
+
 #include "pathing.h"
+
 #include "movement.h"
 
 
 int main(void) {
 
+initAdc();
+	initPeripherals();
+	calibrateSensors();
+
+	initBehaviors();
 
 	initPeripherals();
 	calibrateSensors();
@@ -29,6 +36,4 @@ int main(void) {
 
 	return(0);
 }
-
-
 
