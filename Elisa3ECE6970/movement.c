@@ -6,17 +6,26 @@
 static uint16_t turn90count = 27500; //nonmagnetic surface counter
 static uint16_t gridMoveCount = 33000; 
 
+/*temporary local variables for counting */
+volatile uint32_t turnCounter = 0;
+volatile uint8_t gridStepCounter = 0; 
 
 /*turns 90 degrees to the left
 */
 void turnLeft() {
 		
 		//spin for 90 degrees
-		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
+		if (turnCounter<turn90count) {
 			setLeftSpeed(-10);
 			setRightSpeed(10);
-			handleMotorsWithSpeedController();  
+			turnCounter ++;
 		}
+		else {
+			turnCounter = 0;
+			setLeftSpeed(0);
+			setRightSpeed(0);
+		}
+
 
 }
 
@@ -25,25 +34,33 @@ void turnLeft() {
 void turnRight() {
 
 		//spin for 90 degrees
-		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
+		if (turnCounter<turn90count) {
 			setLeftSpeed(10);
 			setRightSpeed(-10);
-			handleMotorsWithSpeedController();  
+			turnCounter ++;
 		}
-
+		else {
+			turnCounter = 0;
+			setLeftSpeed(0);
+			setRightSpeed(0);
+		}
 }
 
 /*
 turn 180 degrees and face the direction it came from
 */
 void turn180() {
-		//stopWait(0); //run
 		
 		//spin for 90 degrees
-		for (uint16_t turnCounter = 0; turnCounter < (turn90count*2); turnCounter ++ ){
+		if (turnCounter<turn90count*2) {
 			setLeftSpeed(10);
 			setRightSpeed(-10);
-			handleMotorsWithSpeedController();  
+			turnCounter ++;
+		}
+		else {
+			turnCounter = 0;
+			setLeftSpeed(0);
+			setRightSpeed(0);
 		}
 		
 
@@ -57,7 +74,7 @@ void stopWait(char stop) {
 	if(stop) {
 			setLeftSpeed(0);
 			setRightSpeed(0);
-			handleMotorsWithSpeedController();
+//			handleMotorsWithSpeedController();
 	}
 
 }
@@ -66,9 +83,15 @@ void stopWait(char stop) {
 /*move forwared x amount grid step
 */
 void moveForward(int gridSteps) {
-	for (int gridStepCounter = 0; gridStepCounter < gridSteps; gridStepCounter ++) {
+	if (gridStepCounter < gridSteps) {
 		moveForwardOne();
+		gridStepCounter ++;
 	}
+	else {
+		gridStepCounter = 0; 
+		stopWait(1);
+	}
+
 }
 
 
@@ -96,11 +119,11 @@ char gridEdgeDetected() {
 */
 void moveForwardOne(){
 
-//	while(gridEdgeDetected()) {
-	for (uint16_t gridMoveCounter = 0; gridMoveCounter < gridMoveCount; gridMoveCounter ++ ){
+	if(gridEdgeDetected()) {
+//	for (uint16_t gridMoveCounter = 0; gridMoveCounter < gridMoveCount; gridMoveCounter ++ ){
 			setLeftSpeed(15);
 			setRightSpeed(15);
-			handleMotorsWithSpeedController();
+			//handleMotorsWithSpeedController();
 	}
 
 //	stopWait(1);
