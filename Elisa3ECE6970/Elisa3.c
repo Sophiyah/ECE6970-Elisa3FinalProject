@@ -89,7 +89,15 @@ int main(void) {
 	
 	*/
 
+	for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
+	turnLeft();
+	handleMotorsWithSpeedController();
+	}
 
+
+handleMotorsWithSpeedController();
+
+/*
 		//for(int i=0; i<12; i++) {
 		int tempProxResult = proximityResult[9] + 0x30;
 									usart0Transmit(tempProxResult&0xFF,1);
@@ -113,7 +121,7 @@ int main(void) {
 		else {
 			GREEN_LED4_ON;
 		}
-	
+*/	
 	}
 	//return(0);
 }

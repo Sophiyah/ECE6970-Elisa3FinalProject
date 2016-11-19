@@ -5,17 +5,23 @@
 /*----variables for file-----*/
 static uint16_t turn90count = 27500; //nonmagnetic surface counter
 static uint16_t gridMoveCount = 33000; 
-
+volatile uint16_t turnCounter = 0;
 
 /*turns 90 degrees to the left
 */
 void turnLeft() {
 		
 		//spin for 90 degrees
-		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
+		if (turnCounter<turn90count) {
 			setLeftSpeed(-10);
 			setRightSpeed(10);
-			handleMotorsWithSpeedController();  
+			//handleMotorsWithSpeedController();  
+			turnCounter ++;
+		}
+		else {
+			turnCounter = 0;
+			setLeftSpeed(0);
+			setRightSpeed(0);
 		}
 
 }
