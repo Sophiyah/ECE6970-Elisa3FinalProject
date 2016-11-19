@@ -36,17 +36,17 @@ HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
+## Libraries
+LIBS = -l\avr6\libm 
+
 ## Objects that must be built in order to link
-OBJECTS = Elisa3ECE6970.o adc.o behaviors.o eepromIO.o ir_remote_control.o irCommunication.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o 
+OBJECTS = adc.o behaviors.o eepromIO.o Elisa3ECE6970.o ir_remote_control.o irCommunication.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
 
 ## Build
 all: $(TARGET) Elisa3ECE6970.hex Elisa3ECE6970.eep Elisa3ECE6970.lss## Compile
-Elisa3ECE6970.o: ../Elisa3ECE6970.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
 adc.o: ../adc.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
@@ -54,6 +54,9 @@ behaviors.o: ../behaviors.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 eepromIO.o: ../eepromIO.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+Elisa3ECE6970.o: ../Elisa3ECE6970.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ir_remote_control.o: ../ir_remote_control.c
