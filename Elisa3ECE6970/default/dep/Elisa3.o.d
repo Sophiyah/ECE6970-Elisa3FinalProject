@@ -24,7 +24,7 @@ Elisa3.o: ../Elisa3.c \
   ../leds.h ../spi.h c:/winavr-20100110/lib/gcc/../../avr/include/stdio.h \
   c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h ../mirf.h \
   ../sensors.h ../twimaster.h ../usart.h ../ir_remote_control.h \
-  ../nRF24L01.h ../movement.h
+  ../nRF24L01.h ../pathing.h
 
 c:/winavr-20100110/lib/gcc/../../avr/include/avr\io.h:
 
@@ -102,4 +102,4 @@ c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stdarg.h:
 
 ../nRF24L01.h:
 
-../movement.h:
+../pathing.h:
