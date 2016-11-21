@@ -12,16 +12,10 @@ volatile uint16_t turnCounter = 0;
 void turnLeft() {
 		
 		//spin for 90 degrees
-		if (turnCounter<turn90count) {
+		for (uint16_t turnCounter = 0; turnCounter<turn90count; turnCounter ++ ){
 			setLeftSpeed(-10);
 			setRightSpeed(10);
-			//handleMotorsWithSpeedController();  
-			turnCounter ++;
-		}
-		else {
-			turnCounter = 0;
-			setLeftSpeed(0);
-			setRightSpeed(0);
+			handleMotorsWithSpeedController();  
 		}
 
 }

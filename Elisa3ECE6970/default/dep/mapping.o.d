@@ -15,7 +15,7 @@ mapping.o: ../mapping.c ../mapping.h ../movement.h ../variables.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/math.h \
   c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h \
   c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h \
-  ../speed_control.h
+  ../speed_control.h ../usart.h
 
 ../mapping.h:
 
@@ -60,3 +60,5 @@ c:/winavr-20100110/lib/gcc/../../avr/include/stdlib.h:
 c:\winavr-20100110\bin\../lib/gcc/avr/4.3.3/include/stddef.h:
 
 ../speed_control.h:
+
+../usart.h:

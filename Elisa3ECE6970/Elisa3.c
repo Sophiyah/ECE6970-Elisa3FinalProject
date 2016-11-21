@@ -43,41 +43,13 @@ int main(void) {
 	GREEN_LED6_OFF;
 	GREEN_LED7_OFF; 
 
-	//enableObstacleAvoidance();
 	//int changeLed = 0;
 	while(1) {
 		
-	//adcSaveDataTo = SAVE_TO_PROX;
 		//delay for some time 
 		//_delay_ms(2000);
 		//if (changeLed==0){
 /*		int tempCounter = 0;
-		ISR(proxUpdated){
-			
-			if(changeLed = 1){
-			GREEN_LED7_ON;
-			changeLed =0;
-			}
-			else {
-			GREEN_LED7_OFF;
-			changeLed = 1;
-			}
-//			proximityResult[9] 
-			tempCounter++; 
-			proxUpdated = 0;
-
-			if(tempCounter == 160){
-			tempCounter = 0;
-			}
-			//changeLed=1;
-			//moveForward(1);
-			//mapRoom();
-			
-			//for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
-			while(1){
-			stopWait(1);
-			
-			}
 		
 		}
 		*/
@@ -88,14 +60,7 @@ int main(void) {
 		}
 	
 	*/
-
-	for (uint16_t stopCounter = 0; stopCounter<27000; stopCounter ++ ){
-	turnLeft();
-	handleMotorsWithSpeedController();
-	}
-
-
-handleMotorsWithSpeedController();
+		mapRoom();
 
 /*
 		//for(int i=0; i<12; i++) {
