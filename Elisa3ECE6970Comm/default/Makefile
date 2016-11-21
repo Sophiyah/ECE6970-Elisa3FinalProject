@@ -36,9 +36,6 @@ HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
-## Libraries
-LIBS = -l\avr6\libm 
-
 ## Objects that must be built in order to link
 OBJECTS = adc.o behaviors.o eepromIO.o Elisa3ECE6970.o ir_remote_control.o irCommunication.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o 
 
