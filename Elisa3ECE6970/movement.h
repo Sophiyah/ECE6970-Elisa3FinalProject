@@ -56,9 +56,14 @@ Returns 1 if and edge is detected and returns 0 if no edge detected.
 */
 char gridEdgeDetected();
 
-/*if front ground sensor < CLIFF_threshold
-	return gridEdgeDetected
 
-
+/* Tell how many grid lines the robot crossed
 */
+int gridEdgeCount(); 
+
+/* tell if the robot crosses from black to white
+*/
+unsigned char blackToWhiteEdgeDetect();
+
+
 #endif

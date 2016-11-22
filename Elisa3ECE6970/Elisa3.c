@@ -42,12 +42,33 @@ int main(void) {
 	GREEN_LED7_OFF; 
 
 	//enableObstacleAvoidance();
-	int changeLed = 0;
+
 	while(1) {
 
-		turnLeft();
+		moveForwardOne();
+		while(1){
+		stopWait(1);
+		}
+		int temp1 = gridEdgeDetected(); 
+		int temp = temp1 + 0x30;	;
+		 usart0Transmit(temp,1);
+		
+	// while(temp1 == 1) {
+	//		temp1 = blackToWhiteEdgeDetect();
+	//			while(temp1 ==0) {}
+	 //}
 
-		turnRight();
+	//	while(temp1 ==0) {}
+
+
+/*		if (proximityResult[9] > 540 || proximityResult[10] > 540){
+			GREEN_LED6_ON;
+	
+		}
+		else{
+			GREEN_LED6_OFF;
+		}
+		*/
 /*		
 		//delay for some time 
 		//_delay_ms(2000);
