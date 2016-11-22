@@ -74,15 +74,13 @@ void stopWait(char stop) {
 }
 
 
-/*move forwared x amount grid step
+/*move forward x amount grid step
 */
 void moveForward(int gridSteps) {
 	for (gridStepCounter = 0; gridStepCounter < gridSteps; gridStepCounter++) {
 		moveForwardOne();
 	}
 }
-
-
 
 
 /*----------helper functions ------------------*/
@@ -93,7 +91,7 @@ void moveForward(int gridSteps) {
 /*move forwared 1 grid step
 */
 void moveForwardOne(){
-	reachedNextGrid = gridEdgeDetected();
+	reachedNextGrid = 0;
 	while(reachedNextGrid==0) {
 	//for (uint16_t gridMoveCounter = 0; gridMoveCounter < gridMoveCount; gridMoveCounter ++ ){
 			setLeftSpeed(15);
@@ -102,8 +100,16 @@ void moveForwardOne(){
 			reachedNextGrid = gridEdgeDetected();
 	}
 
-//	stopWait(1);
-	
+	//backup into the grid itself so the Robot doesn't stop on the line
+	while(reachedNextGrid == 1) {
+//	while(proximityResult[9] > gridEdgeThresh && proximityResult[10] > gridEdgeThresh && reachedNextGrid == 1) { //backup until prox sensors see Black
+			setLeftSpeed(-15);
+			setRightSpeed(-15);
+			handleMotorsWithSpeedController();
+			reachedNextGrid = gridEdgeDetected();
+
+	}
+
 }
 
 

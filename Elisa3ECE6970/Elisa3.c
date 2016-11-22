@@ -45,13 +45,15 @@ int main(void) {
 
 	while(1) {
 
-		moveForwardOne();
+		moveForward(3);
+		int temp1 = gridEdgeDetected(); 
+		int temp = temp1 + 0x30;	;
+		 usart0Transmit(temp,1);	
+//		moveForwardOne();
 		while(1){
 		stopWait(1);
 		}
-		int temp1 = gridEdgeDetected(); 
-		int temp = temp1 + 0x30;	;
-		 usart0Transmit(temp,1);
+
 		
 	// while(temp1 == 1) {
 	//		temp1 = blackToWhiteEdgeDetect();
