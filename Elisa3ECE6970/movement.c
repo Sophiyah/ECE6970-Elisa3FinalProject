@@ -3,7 +3,7 @@
 #include "movement.h"
 
 /*----variables for file-----*/
-static uint16_t turn90count = 27500; //nonmagnetic surface counter
+static uint16_t turn90count = 26500; //nonmagnetic surface counter
 //static uint16_t gridMoveCount = 33000;
 static uint16_t gridEdgeThresh = 540; 
 
@@ -176,7 +176,7 @@ unsigned char blackToWhiteEdgeDetect() {
 
 	switch(groundColor){//0 is black and 1 is white
 		
-		case 0: 
+		case 0: //groundColor is black
 			if (proximityResult[9] > gridEdgeThresh && proximityResult[10] > gridEdgeThresh) {//if current values are white
 				groundColor = 1;
 				colorEdge = 1; 
@@ -187,7 +187,7 @@ unsigned char blackToWhiteEdgeDetect() {
 			}
 			break;
 
-		case 1:
+		case 1: //groundColor is white
 			if (proximityResult[9] < gridEdgeThresh && proximityResult[10] < gridEdgeThresh) {//if current values are black
 				groundColor = 0;
 				colorEdge = 0; 

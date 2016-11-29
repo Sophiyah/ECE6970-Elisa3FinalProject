@@ -45,10 +45,21 @@ int main(void) {
 
 	while(1) {
 
+
+		turnLeft();
+		moveForward(1);
+		turnRight();
+		moveForward(1);
+		turn180(); 
+		moveForward(1);
+		turn180();
+		for(int temp = 0 ; temp<1000; temp++){
+		stopWait(1);
+		}
 		moveForward(3);
-		int temp1 = gridEdgeDetected(); 
-		int temp = temp1 + 0x30;	;
-		 usart0Transmit(temp,1);	
+//		int temp1 = gridEdgeDetected(); 
+//		int temp = temp1 + 0x30;	;
+//		 usart0Transmit(temp,1);	
 //		moveForwardOne();
 		while(1){
 		stopWait(1);
