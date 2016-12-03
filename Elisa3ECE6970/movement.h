@@ -26,39 +26,33 @@ void turn180();
 */
 void moveForwardOne();
 
-/*move forwared x amount grid step
+/*move forwared x amount grid step, the user can specify how 
+many grids they want the robot to move forward.
 */
 void moveForward(int gridSteps);
 
 /*
-
-moveForward(uint4_t gridSteps); //move forward gridSteps amount of gridsteps
-	for gridsteps > 0 
-	setLeft and Right speed until gridEdgeDetected()
-	stop&wait 
-	gridsteps-- 
-
-gridFollow();
-
-*/
-
-/*
-stop where robot is and set motor speed to 0, wait if stop = 1
+stop where robot is and set motor speed to 0, wait if stop = 1. Needs 
+to be continuously called for the robot to stop
 */
 void stopWait(char stop);
 
-
-//go back until 
-void moveBackward();
 
 /* tell if the front ground sensors detect a gridEdge. 
 Returns 1 if and edge is detected and returns 0 if no edge detected.
 */
 char gridEdgeDetected();
 
-/*if front ground sensor < CLIFF_threshold
-	return gridEdgeDetected
 
-
+/* Tell how many grid lines the robot crossed. Outputs 0 if no gird 
+lines seen and 1 if robot crosses one line.
+Outputs 2 if robot crosses 2 lines.
 */
+int gridEdgeCount(); 
+
+/* if the robot crosses from black surface to white surface, outputs 1.
+*/
+unsigned char blackToWhiteEdgeDetect();
+
+
 #endif

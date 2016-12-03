@@ -37,7 +37,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = Elisa3.o adc.o behaviors.o ir_remote_control.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o movement.o 
+OBJECTS = Elisa3.o adc.o behaviors.o ir_remote_control.o leds.o mirf.o motors.o ports_io.o sensors.o speed_control.o spi.o twimaster.o usart.o utility.o variables.o movement.o gridNavigation.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -90,6 +90,9 @@ variables.o: ../variables.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 movement.o: ../movement.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+gridNavigation.o: ../gridNavigation.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
