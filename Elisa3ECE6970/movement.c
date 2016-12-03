@@ -23,40 +23,43 @@ volatile int groundColor = 0;
 /*turns 90 degrees to the left
 */
 void turnLeft() {
-		
+		GREEN_LED7_ON;
 		//spin for 90 degrees
 		for (turnCounter = 0; turnCounter<turn90count; 	turnCounter++) {
 			setLeftSpeed(-10);
 			setRightSpeed(10);
 			handleMotorsWithSpeedController();  
 		}
-
+		GREEN_LED7_OFF;
 }
 
 /*turns 90 degrees to the right
 */
 void turnRight() {
-
+		GREEN_LED1_ON;
 		//spin for 90 degrees
 		for (turnCounter = 0; turnCounter<turn90count; 	turnCounter++) {
 			setLeftSpeed(10);
 			setRightSpeed(-10);
 			handleMotorsWithSpeedController();  
 		}
-
+		GREEN_LED1_OFF;
 }
 
 /*
 turn 180 degrees and face the direction it came from
 */
 void turn180() {
-		
+		GREEN_LED3_ON;
+		GREEN_LED5_ON;
 		//spin for 90 degrees
 		for (turnCounter = 0; turnCounter<turn90count*2; 	turnCounter++) {
 			setLeftSpeed(10);
 			setRightSpeed(-10);
 			handleMotorsWithSpeedController();  
 		}		
+		GREEN_LED3_OFF;
+		GREEN_LED5_OFF;
 
 }
 
