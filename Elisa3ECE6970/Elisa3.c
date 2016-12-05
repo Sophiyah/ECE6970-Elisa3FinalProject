@@ -33,7 +33,7 @@ int main(void) {
 
 	while(1) {
 
-	//gridNavigation();
+	gridNavigation();
 	//getMap();                                                                    
 	
 	}
